@@ -54,7 +54,7 @@ function Dashboard() {
   useEffect(() => {
 
     if (!user) {
-      navigate('/login')
+      navigate('/')
     }
     
     if (isError) {
