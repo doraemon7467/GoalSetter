@@ -15,15 +15,7 @@ const app = express();
 //middleware so that we can access the req.body in POST reqs
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-// Allow requests from specific origins
-const corsOptions = {
-  origin: 'https://goal-setter-eta.vercel.app/login',
-  // You can also use an array to allow multiple origins:
-  // origin: ['https://goal-setter-eta.vercel.app', 'https://other-domain.com'],
-  optionsSuccessStatus: 200 // Some legacy browsers (IE11) choke on 204
-};
-
-app.use(cors(corsOptions));
+cors({credentials:true,origin:'https://goal-setter-eta.vercel.app/login'})
 
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
