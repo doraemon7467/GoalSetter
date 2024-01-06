@@ -1,8 +1,6 @@
 import axios from 'axios'
 
 
-axios.defaults.withCredentials = true;
-
 // Create new goal
 const createGoal = async (goalData,completeTime,priority, token) => {
   const config = {
@@ -11,7 +9,7 @@ const createGoal = async (goalData,completeTime,priority, token) => {
     },
   }
 
-  const response = await axios.post('https://backend-service-y6sj.onrender.com/api/goals', {text : goalData, completeTime, priority}, config)
+  const response = await axios.post('https://goal-setter-backend-one.vercel.app/api/goals', {text : goalData, completeTime, priority}, config)
 
   return response.data
 }
@@ -24,7 +22,7 @@ const getGoals = async (token) => {
     },
   }
 
-  const response = await axios.get('https://backend-service-y6sj.onrender.com/api/goals', config)
+  const response = await axios.get('https://goal-setter-backend-one.vercel.app/api/goals', config)
 
   return response.data
 }
@@ -37,7 +35,7 @@ const deleteGoal = async (goalId, token) => {
     },
   }
 
-  const response = await axios.delete(`https://backend-service-y6sj.onrender.com/api/goals/${goalId}`, config)
+  const response = await axios.delete(`https://goal-setter-backend-one.vercel.app/api/goals/${goalId}`, config)
 
   console.log(response);
 
@@ -56,7 +54,7 @@ const updateGoal = async (goalId, goalData,completeTime,priority, token) => {
   // console.log(goalId);
   // console.log(token);
 
-  const response = await axios.put(`https://backend-service-y6sj.onrender.com/api/goals/${goalId}`, {text : goalData, completeTime, priority}, config)
+  const response = await axios.put(`https://goal-setter-backend-one.vercel.app/api/goals/${goalId}`, {text : goalData, completeTime, priority}, config)
 
   console.log(response);
 
