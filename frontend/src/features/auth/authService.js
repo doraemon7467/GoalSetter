@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'https://goal-setter-backend-one.vercel.app/api/goals'
+const API_URL = 'https://goal-setter-backend-one.vercel.app/api/goals/'
 
 // Register user
 const register = async (userData) => {
