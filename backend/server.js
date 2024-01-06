@@ -14,7 +14,8 @@ const app = express();
 
 app.use(
     cors({
-      origin : ["https://goal-setter-eta.vercel.app"],
+      credentials : true,
+      origin : "https://goal-setter-eta.vercel.app",
     })
   )
 
