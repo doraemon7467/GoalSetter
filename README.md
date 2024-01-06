@@ -19,6 +19,7 @@ https://github.com/Atigit15/GoalSetter/assets/77894729/10646b9c-527e-418f-ab41-f
 
 
 
+
   
 # Features💫
 - **User Authentication** - GoalSetter offers a robust user authentication system that ensures secure access to the app. 
