@@ -12,6 +12,12 @@ connectDB();
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  next();
+})
 app.use(cors({credentials:true, origin: '*' }));
 //middleware so that we can access the req.body in POST reqs
 app.use(express.json());
