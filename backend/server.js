@@ -12,13 +12,12 @@ connectDB();
 
 const app = express();
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-})
-app.use(cors({credentials:true, origin: '*' }));
+app.use(cors({
+  origin: 'https://goal-setter-eta.vercel.app', // use your actual domain name (or localhost), using * is not recommended
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
+  credentials: true
+}))
 //middleware so that we can access the req.body in POST reqs
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
