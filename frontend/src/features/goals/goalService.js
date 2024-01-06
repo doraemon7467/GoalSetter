@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 
+axios.defaults.withCredentials = true;
+
 // Create new goal
 const createGoal = async (goalData,completeTime,priority, token) => {
   const config = {
