@@ -12,9 +12,6 @@ connectDB();
 
 const app = express();
 
-//middleware so that we can access the req.body in POST reqs
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 const corsOptions = {
     origin: 'https://goal-setter-eta.vercel.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
@@ -22,6 +19,11 @@ const corsOptions = {
   };
   
   app.use(cors(corsOptions));
+
+//middleware so that we can access the req.body in POST reqs
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
