@@ -25,8 +25,8 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
-app.use('/api/test',() => {
-  console.log("ok");
+app.get('/api/test',async (req,res) => {
+  res.json("OK");
 })
 
 // Serve frontend
