@@ -12,7 +12,7 @@ connectDB();
 
 const app = express();
 
-app.use(cors({credentials:true,origin: 'https://goal-setter-eta.vercel.app'}));
+app.use(cors({credentials:true,origin: 'https://goal-setter-eta.vercel.app/login'}));
 
 //middleware so that we can access the req.body in POST reqs
 app.use(express.json());
