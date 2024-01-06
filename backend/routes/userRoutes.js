@@ -10,6 +10,7 @@ const { protect } = require('../middleware/authMiddleware');
 
 // Handle OPTIONS method for '/api/users/login'
 router.options('/login', (req, res) => {
+  console.log('OPTIONS request for /login received'); // Add this line
   res.header('Access-Control-Allow-Methods', 'GET, POST');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
   res.status(200).end();
