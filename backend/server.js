@@ -15,7 +15,13 @@ const app = express();
 //middleware so that we can access the req.body in POST reqs
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-cors({credentials:true,origin:'https://goal-setter-eta.vercel.app'})
+const corsOptions = {
+    origin: 'https://goal-setter-eta.vercel.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true, // If your application requires cookies or authorization headers
+  };
+  
+  app.use(cors(corsOptions));
 
 app.use('/api/goals', require('./routes/goalRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
