@@ -1,23 +1,32 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import goalService from './goalService'
 
+// Define initial state for the goals slice  when the application starts or when the store is created. 
 const initialState = {
-  goals: [],
-  isError: false,
-  isSuccess: false,
-  isLoading: false,
-  message: '',
+  goals: [],  // Array to hold the goals data fetched from the API.
+  // Flags to manage different states
+  isError: false,  // Flag to indicate if an error occurred
+  isSuccess: false, // Flag to indicate if the action was successful
+  isLoading: false, // Flag to indicate if the action is currently loading
+  message: '',    // Message to store any relevant information or error messages
 }
 
+// Async thunk functions for creating, getting, deleting, and updating goals
 // Create new goal
 export const createGoal = createAsyncThunk(
-  'goals/create',
+  'goals/create',  //Specifies the type of Action  . A string that identifies this async action in Redux DevTools
   async ({goalData, completeTime, priority}, thunkAPI) => {
+
     try {
+      // Retrieve the token from the Redux store state
+      // The auth slice in the Redux store contains user data, including the token.
       const token = thunkAPI.getState().auth.user.token
       // console.log(token);
+      // Call the asynchronous function createGoal() from the goalService
+      // Pass goal data, completion time, priority, and the retrieved token
       return await goalService.createGoal(goalData,completeTime,priority, token)
     } catch (error) {
+      // Handle errors and reject with a specific error message
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
       return thunkAPI.rejectWithValue(message)
     }
@@ -82,26 +91,31 @@ export const updateGoal = createAsyncThunk(
   }
 )
 
+// Define the goal slice containing reducers and extra reducers for async actions
 export const goalSlice = createSlice({
   name: 'goal',
   initialState,
   reducers: {
-    reset: (state) => initialState,
+    reset: (state) => initialState,  // Reset the state to initial state
   },
   extraReducers: (builder) => {
+    // Define how the state is updated based on the async action lifecycle
     builder
+    // Handling pending state for createGoal async action
       .addCase(createGoal.pending, (state) => {
         state.isLoading = true
       })
       .addCase(createGoal.fulfilled, (state, action) => {
+        // Handle fulfilled action
         state.isLoading = false
         state.isSuccess = true
-        state.goals.push(action.payload)
+        state.goals.push(action.payload) // Update state with received payload
       })
+      // Handling rejected state for createGoal async action
       .addCase(createGoal.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
-        state.message = action.payload
+        state.message = action.payload  // Update state with error message
       })
       .addCase(getGoals.pending, (state) => {
         state.isLoading = true
@@ -149,5 +163,6 @@ export const goalSlice = createSlice({
   },
 })
 
+// Export actions and reducers and extraReducers from the goal slice
 export const { reset } = goalSlice.actions
 export default goalSlice.reducer
