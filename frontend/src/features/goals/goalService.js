@@ -12,6 +12,7 @@ const createGoal = async (goalData,completeTime,priority, token) => {
 
   // Making a POST request to create a new goal
   const response = await axios.post('https://backend-service-y6sj.onrender.com/api/goals', {text : goalData, completeTime, priority}, config)
+  console.log(response);
 
   return response.data  // Returning the response data from the API
 }
