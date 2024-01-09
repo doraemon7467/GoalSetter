@@ -3,20 +3,22 @@ import { FaSignInAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { login, reset } from '../features/auth/authSlice'
-import Spinner from '../components/Spinner'
+import { login, reset } from '../features/auth/authSlice'  // Importing actions from authSlice
+import Spinner from '../components/Spinner'  // Importing a Spinner component
 
 function Login() {
+  // State for form data (email and password)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   })
 
-  const { email, password } = formData
+  const { email, password } = formData  // Destructuring form data
 
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate()   // Navigation hook from React Router
+  const dispatch = useDispatch()  // Dispatch function from Redux
 
+  // Selecting data from the Redux store using useSelector
   const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
   useEffect(() => {
@@ -43,6 +45,7 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault()
 
+    // Create user object with form data and dispatch the login action
     const userData = {
       email,
       password,
