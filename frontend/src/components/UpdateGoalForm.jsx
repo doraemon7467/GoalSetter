@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { updateGoal } from '../features/goals/goalSlice'
+import { useNavigate } from 'react-router-dom'
 
 function UpdateGoalForm(props) {
   // Initializing state variables to store the updated values of text, completeTime, and priority
@@ -10,6 +11,7 @@ function UpdateGoalForm(props) {
 
   // Accessing the Redux dispatch function
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   // Function to handle form submission
   const onSubmit = (e) => {
@@ -22,8 +24,8 @@ function UpdateGoalForm(props) {
     // Closing the update goal form by invoking the setTrigger function
     props.setTrigger(false);
 
-    // Reloading the window to reflect the updated changes
-    window.location.reload(false);
+     navigate('/')
+    
   }
 
   return (
