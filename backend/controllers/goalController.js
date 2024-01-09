@@ -91,7 +91,7 @@ const updateGoal = asyncHandler( (req, res) => {
     throw new Error("Please set a completion date later than the current date");
   }
 
-  // console.log(req.body);
+  console.log(req.body);
   // Update the goal with the new data
   const updatedGoal =  Goal.updateOne({_id : req.params.id}, {text : req.body.text.text, completeTime : req.body.completeTime.completeTime, priority : req.body.priority.priority});
 
