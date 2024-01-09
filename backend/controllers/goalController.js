@@ -55,9 +55,9 @@ const setGoal = asyncHandler(async (req, res) => {
 // @desc    Update goal
 // @route   PUT /api/goals/:id
 // @access  Private
-const updateGoal = asyncHandler( (req, res) => {
+const updateGoal = asyncHandler(async (req, res) => {
   // Find the goal by ID
-  const goal =  Goal.findById(req.params.id)
+  const goal = await Goal.findById(req.params.id)
 
   // Check if the goal exists
   if (!goal) {
@@ -91,11 +91,11 @@ const updateGoal = asyncHandler( (req, res) => {
     throw new Error("Please set a completion date later than the current date");
   }
 
-  console.log(req.body);
-  console.log("AYUSH");
+  // console.log(req.body);
   // Update the goal with the new data
-  const updatedGoal =  Goal.updateOne({_id : req.params.id}, {text : req.body.text.text, completeTime : req.body.completeTime.completeTime, priority : req.body.priority.priority});
-  
+  const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, {text : req.body.text.text, completeTime : req.body.completeTime.completeTime, priority : req.body.priority.priority}, {
+    new: true,
+  })
 
   res.status(200).json(updatedGoal) // Return the updated goal in JSON format
 })
