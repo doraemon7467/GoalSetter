@@ -26,7 +26,7 @@ const login = async (userData) => {
 // Logout user
 const logout = () => {
   localStorage.removeItem('user');
-  console.log("User deleted");
+  console.log("User deleted from local storage");
 }
 
 const authService = {
