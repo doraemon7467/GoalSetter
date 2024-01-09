@@ -58,7 +58,7 @@ const updateGoal = async (goalId, goalData,completeTime,priority, token) => {
   // console.log(token);
 
   // Making a PUT request to update a user goal by its ID
-  const response = await axios.put(`https://backend-service-y6sj.onrender.com/api/goals/${goalId}`, {text : goalData, completeTime, priority}, config)
+  const response = await axios.put(`https://backend-service-y6sj.onrender.com/api/goals/${goalId}`, {text : goalData, completeTime : completeTime, priority : priority}, config)
 
   console.log(response);
 
