@@ -55,6 +55,8 @@ const updateGoal = async (goalId, goalData,completeTime,priority, token) => {
   }
 
   console.log(goalData);
+  console.log("Ayush");
+  console.log(completeTime);
   // console.log(goalId);
   // console.log(token);
 
