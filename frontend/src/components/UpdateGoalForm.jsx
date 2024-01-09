@@ -3,20 +3,26 @@ import { useDispatch } from 'react-redux'
 import { updateGoal } from '../features/goals/goalSlice'
 
 function UpdateGoalForm(props) {
+  // Initializing state variables to store the updated values of text, completeTime, and priority
   const [text, setText] = useState(props.goal.text)
   const [completeTime, setCompleteTime] = useState(props.goal.completeTime);
   const [priority, setPriority] = useState(props.goal.priority);
 
+  // Accessing the Redux dispatch function
   const dispatch = useDispatch()
 
+  // Function to handle form submission
   const onSubmit = (e) => {
     e.preventDefault()
 
+    // Dispatching the action to update the goal with the new data
     dispatch(updateGoal({ goalId : (props.goal._id), goalData : {text}, completeTime : {completeTime}, priority : {priority}}));
     setText('')
 
+    // Closing the update goal form by invoking the setTrigger function
     props.setTrigger(false);
 
+    // Reloading the window to reflect the updated changes
     window.location.reload(false);
   }
 

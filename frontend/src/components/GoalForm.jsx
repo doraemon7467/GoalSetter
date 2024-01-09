@@ -1,20 +1,24 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createGoal } from '../features/goals/goalSlice'
+import { createGoal } from '../features/goals/goalSlice' // importing the action creator from goalSlice
 
 function GoalForm(props) {
   const [text, setText] = useState('')
   const [completeTime, setCompleteTime] = useState(null);
   const [priority, setPriority] = useState(0)
   
+
+  //  This function will be used to dispatch actions to the Redux store.
   const dispatch = useDispatch()
 
   const onSubmit = (e) => {
     e.preventDefault()
 
+    //  dispatches the createGoal action with the form data
     dispatch(createGoal({ goalData : {text}, completeTime : {completeTime}, priority : {priority} }));
     setText('')
 
+    // closes the goal form by calling props.setTrigger(false).
     props.setTrigger(false);
 
   }
