@@ -93,9 +93,7 @@ const updateGoal = asyncHandler( (req, res) => {
 
   // console.log(req.body);
   // Update the goal with the new data
-  const updatedGoal =  Goal.findByIdAndUpdate(req.params.id, {text : req.body.text.text, completeTime : req.body.completeTime.completeTime, priority : req.body.priority.priority}, {
-    new: true,
-  })
+  const updatedGoal =  Goal.updateOne({_id : req.params.id}, {text : req.body.text.text, completeTime : req.body.completeTime.completeTime, priority : req.body.priority.priority});
 
   res.status(200).json(updatedGoal) // Return the updated goal in JSON format
 })
