@@ -23,7 +23,7 @@ function UpdateGoalForm(props) {
     props.setTrigger(false);
 
     // Reloading the window to reflect the updated changes
-    window.location.reload(false);
+    // window.location.reload(false);
   }
 
   return (
