@@ -24,7 +24,7 @@ function UpdateGoalForm(props) {
     // Closing the update goal form by invoking the setTrigger function
     props.setTrigger(false);
 
-     window.location.reload();
+    //  window.location.reload();
     
   }
 
