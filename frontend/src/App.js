@@ -10,17 +10,25 @@ import Footer from './components/Footer'
 function App() {
   return (
     <>
+    {/* Router component from react-router-dom */}
       <Router>
         <div className='container'>
+          {/* Header component */}
           <Header />
+           {/* Routes component to define application routes */}
           <Routes>
+            {/* Route for Dashboard component */}
             <Route path='/' element={<Dashboard />} />
+            {/* Route for Login component */}
             <Route path='/login' element={<Login />} />
+             {/* Route for Register component */}
             <Route path='/register' element={<Register />} />
           </Routes>
         </div>
       </Router>
+      {/* ToastContainer component from react-toastify for displaying toast notifications */}
       <ToastContainer />
+      {/* Footer component */}
       <Footer></Footer>
     </>
   )
